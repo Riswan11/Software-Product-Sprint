@@ -45,7 +45,9 @@ public final class RandomQuoteServlet extends HttpServlet {
     quotes.add(
         "Sometimes it is the people no one can imagine anything of "
             + "who do the things no one can imagine. - Alan Turing");
+    
     quotes.add("Those who can imagine anything, can create the impossible. - Alan Turing");
+    quotes.add("The true sign of intelligence is not Knowledge but Imagination. - Albert Enstein");
   }
 
   @Override
