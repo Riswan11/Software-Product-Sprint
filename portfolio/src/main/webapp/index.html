@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
     <script src="script.js"></script>
   </head>
-  <body>
+  <body onload="getMessage()">
       <header>
           <div class="container">
         <nav>
@@ -66,6 +66,39 @@
         <img src="https://images.unsplash.com/photo-1581946311911-cf60615e8e22?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=401&q=80" height="420" width="320">
         <p>I enjoy photographing nature. I love to play games in my free time and also watch football matches. I also enjoy watching anime as well</p>
         </div>
+
+    
+    
+    </div>
+
+
+      <form action="/data" method="POST">
+
+      <p>What do you think? Leave a comment!:</p>
+      <textarea name="text-input"></textarea>
+      <br/><br/>
+
+      <input type="submit" />
+    </form>
+
+    <div id="data-container"></div>
+
+    <p>Select a language, then click Translate to translate the comments!</p>
+
+      <select id="languageCode">
+      <option value="en">English</option>
+      <option value="zh">Chinese</option>
+      <option value="es">Spanish</option>
+      <option value="hi">Hindi</option>
+      <option value="ar">Arabic</option>
+    </select>
+
+
+<button onclick="requestTranslation()">Translate</button>
+ 
+    <hr/>
+
+  
 
   </body>
 </html>
