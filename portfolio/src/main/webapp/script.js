@@ -27,12 +27,65 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-const navSlide = () => {
-    const burger = document.querySelector('.burger');
-    const nav = document.querySelector('.nav-links');
-
-    burger.addEventListener('click',()=>{
-            nav.classList.toggle('nav-active');
-    });
+/**
+ * week 2 step 2
+ * Another way to use fetch is by using the async and await keywords. This
+ * allows you to use the return values directly instead of going through
+ * Promises.
+ */
+async function getDataUsingAsyncAwait() {
+  const response = await fetch('/data');
+  const quote = await response.text();
+  document.getElementById('data-container').innerText = quote;
 }
-navSlide();
+
+/**
+ * week 2 step 3
+ * Fetches comments from the servers and adds them to the DOM.
+ */
+function getCommentList() {
+  fetch('/data').then(response => response.json()).then((comList) => {
+    // comList is an object, not a string, so we have to
+    // reference its fields to create HTML content
+
+    const comListElement = document.getElementById('data-container');
+    //comListElement.innerHTML = '';
+    //for (let i = 0; i < comList.keys().length; i++){
+    //comListElement.appendChild(
+    //    createListElement(comList[i]));
+    //}
+    comList.forEach((line) => {
+      comListElement.appendChild(createListElement(line));
+    });
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
+/**
+ * week 3
+ * fetches translated comments (get request) and adds it to the DOM.
+ */
+
+/** Translates the comments and resends the GET request */
+function requestTranslation() {
+        const languageCode = document.getElementById('languageCode').value;
+        const dataContainer = document.getElementById('data-container');
+        dataContainer.innerText = '';
+
+        const params = new URLSearchParams();
+        params.append('languageCode', languageCode);
+
+        fetch('/data?' + params.toString()).then(response => response.json()).then((comList) => {
+    const comListElement = document.getElementById('data-container');
+    comList.forEach((line) => {
+      comListElement.appendChild(createListElement(line));
+    });
+  });
+
+      }
